@@ -1,10 +1,10 @@
 package app;
 
-public class Aluno extends PessoaFisica{
+public class Aluno extends PessoaFisica {
 
-	String matricula, 
-	       curso;
-	
+	String matricula,
+			curso;
+
 	public Aluno(String nome, String cpf, String email, String matricula, String curso) {
 		super(nome, cpf, email);
 		this.matricula = matricula;
@@ -18,12 +18,11 @@ public class Aluno extends PessoaFisica{
 	public final String getCurso() {
 		return curso;
 	}
-	
-	
+
 	protected void finalize() throws Throwable {
 		System.out.println("Destruindo objeto: " + this);
 	}
-	
+
 	public String toString() {
 		String resposta = super.toString();
 		resposta += "MATRICULA: " + matricula + '\n';
