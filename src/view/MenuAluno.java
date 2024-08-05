@@ -57,7 +57,7 @@ public class MenuAluno {
 				
 			case 2: 
 				String matricula = lerMatricula();
-				Aluno a = cadAluno.pesquisarAluno(matricula);
+				Aluno a = cadAluno.pesquisar(matricula);
 				if (a != null)
 					JOptionPane.showMessageDialog(null, a.toString());
 				break;
@@ -65,7 +65,7 @@ public class MenuAluno {
 			case 3: 
 				matricula = lerMatricula(); 
 				Aluno novoCadastro = dadosNovoAluno();
-				boolean atualizado = cadAluno.atualizarAluno(matricula, novoCadastro);
+				boolean atualizado = cadAluno.atualizar(matricula, novoCadastro);
 				if (atualizado) {
 					JOptionPane.showMessageDialog(null, "Cadastro atualizado.");
 				}
@@ -73,7 +73,7 @@ public class MenuAluno {
 				
 			case 4: 
 				matricula = lerMatricula();
-				Aluno remover = cadAluno.pesquisarAluno(matricula);
+				Aluno remover = cadAluno.pesquisar(matricula);
 				boolean removido = cadAluno.removerAluno(remover);
 				if (removido) {
 					JOptionPane.showMessageDialog(null, "Aluno removido do cadastro");

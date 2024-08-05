@@ -1,52 +1,35 @@
 package cadastros;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import app.Aluno;
 
-public class CadastroAluno {
-	int numAlunos; 
-	private List<Aluno> alunos;
-	
-	public CadastroAluno() {
-		numAlunos = 0;
-		alunos = new ArrayList<Aluno>();
-	}
+public class CadastroAluno extends Cadastro<Aluno> {
 	
 	public int cadastrarAluno(Aluno a) {
-		boolean cadastrou = alunos.add(a);
-		if (cadastrou) {
-			numAlunos = alunos.size();
-		}
-		return numAlunos;
+		boolean cadastrou = cadastrar(a);
+		return cadastrou ? getCadastros().size() : -1;
 	}
 	
-	public Aluno pesquisarAluno(String matriculaAluno) {
-		for (Aluno a: alunos) {
-			if (a.getMatricula().equalsIgnoreCase(matriculaAluno)) {
-				return a;
+	public Aluno pesquisar(String matriculaAluno) {
+		for (Aluno aluno : getCadastros()) {
+			if (aluno.getMatricula().equalsIgnoreCase(matriculaAluno)) {
+				return aluno;
 			}
 		}
 		return null;
 	}
 	
 	public boolean removerAluno(Aluno a) {
-		boolean removeu = false; 
-		if (alunos.contains(a)) {
-			removeu = alunos.remove(a);
-		}
-		return removeu;
+		return remover(a);
 	}
 	
-	public boolean atualizarAluno(String matricula, Aluno a) {
-		boolean resposta = false;
-		Aluno remover = pesquisarAluno(matricula);
-		if (remover != null) {
-			alunos.remove(remover);
-			resposta = alunos.add(a);
+	public boolean atualizar(String matricula, Aluno a) {
+		for (int i = 0; i < getCadastros().size(); i++) {
+			if (getCadastros().get(i).getMatricula().equalsIgnoreCase(matricula)) {
+				getCadastros().set(i, a);
+				return true;
+			}
 		}
-		return resposta;
+		return false;
 	}
 }
 
