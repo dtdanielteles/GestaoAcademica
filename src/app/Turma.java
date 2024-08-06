@@ -4,10 +4,12 @@ public class Turma {
 
     int numero;
     String horario;
+    // Disciplina disciplina;
 
     public Turma(int numero, String horario) {
         this.numero = numero;
         this.horario = horario;
+        // this.disciplina = disciplina;
     }
 
     public final int getNumero() {
@@ -17,6 +19,10 @@ public class Turma {
     public final String getHorario() {
         return horario;
     }
+
+    // public final String getDisciplina() {
+    //     return disciplina;
+    // }
 
     public String toString() {
         String resposta = super.toString() + "\n";
