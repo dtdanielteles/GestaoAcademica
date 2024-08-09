@@ -18,4 +18,11 @@ public class Disciplina {
         return codigo;
     }
 
+    public String toString() {
+        String resposta = super.toString() + "\n";
+        resposta += "Codigo: " + codigo + "\n";
+        resposta += "Nome: " + nome + "\n";
+        return resposta;
+    }
+
 }

@@ -2,15 +2,18 @@ package view;
 
 import javax.swing.JOptionPane;
 
+import app.Disciplina;
 import app.Turma;
 import cadastros.CadastroTurma;
+import cadastros.CadastroDisciplina;
 
 public class MenuTurma {
 
-    public static Turma dadosNovaTurma() {
+    public static Turma dadosNovaTurma(CadastroDisciplina cadDisciplina) {
         int numero = lerNumero();
         String horario = lerHorario();
-        return new Turma(numero, horario);
+        Disciplina disciplina = lerDisciplina(cadDisciplina);
+        return new Turma(numero, horario, disciplina);
     }
 
     private static int lerNumero() {
@@ -22,7 +25,16 @@ public class MenuTurma {
         return JOptionPane.showInputDialog("Informe o horario da turma: ");
     }
 
-    public static void menuTurma(CadastroTurma cadTurma) {
+    private static Disciplina lerDisciplina(CadastroDisciplina cadDisciplina) {
+        String codigo = JOptionPane.showInputDialog("Informe o codigo da disciplina: ");
+        Disciplina disciplina = cadDisciplina.pesquisar(codigo);
+        if (disciplina == null) {
+            JOptionPane.showMessageDialog(null, "Disciplina não encontrada");
+        }
+        return disciplina;
+    }
+
+    public static void menuTurma(CadastroTurma cadTurma, CadastroDisciplina cadDisciplina) {
         String txt = "Informe a opção desejada \n"
                 + "1 - Cadastrar turma\n"
                 + "2 - Pesquisar turma\n"
@@ -37,7 +49,7 @@ public class MenuTurma {
 
             switch (opcao) {
                 case 1:
-                    Turma novaTurma = dadosNovaTurma();
+                    Turma novaTurma = dadosNovaTurma(cadDisciplina);
                     cadTurma.cadastrarTurma(novaTurma);
                     break;
 
@@ -50,7 +62,7 @@ public class MenuTurma {
 
                 case 3:
                     numero = lerNumero();
-                    Turma novoCadastro = dadosNovaTurma();
+                    Turma novoCadastro = dadosNovaTurma(cadDisciplina);
                     boolean atualizado = cadTurma.atualizarTurma(numero, novoCadastro);
                     if (atualizado) {
                         JOptionPane.showMessageDialog(null, "Cadastro atualizado.");

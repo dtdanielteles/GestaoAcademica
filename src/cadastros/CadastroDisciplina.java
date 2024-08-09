@@ -4,7 +4,7 @@ import app.Disciplina;
 
 public class CadastroDisciplina extends Cadastro<Disciplina> {
 
-    public boolean CadastrarDisciplina(Disciplina d){
+    public boolean cadastrarDisciplina(Disciplina d){
 		boolean cadastrou = cadastrar(d);
 		return cadastrou;
 	}
