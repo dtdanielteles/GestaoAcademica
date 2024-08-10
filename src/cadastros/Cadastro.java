@@ -1,17 +1,23 @@
 package cadastros;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Cadastro <T> {
     private List<T> cadastros;
 
-    public Cadastro() {
-        cadastros = new ArrayList<>();
+    // Construtor da classe
+    public Cadastro () {
+        cadastros = new LinkedList<>();
     }
 
-    public boolean cadastrar (T t) {
-        return cadastros.add(t);
+    public int cadastrar (T t) {
+        // return cadastros.add(t);
+        boolean cadastrou = this.cadastros.add(t); // Adiciona o objeto à lista
+        if (cadastrou) {
+            return this.cadastros.size(); // Atualiza o número de objetos cadastrados
+        }
+        return 0;
     }
 
     public boolean remover (T t) {
@@ -20,7 +26,15 @@ public abstract class Cadastro <T> {
 
     public abstract T pesquisar (String codigo);
 
-    public abstract boolean atualizar (String codigo, T t);
+    public boolean atualizar (String codigo, T t) {
+        boolean resposta = false;
+        T remover = pesquisar(codigo); // Pesquisa o objeto pelo codigo
+        if (remover != null) {
+            cadastros.remove(remover); // Remove o objeto antigo
+            resposta = cadastros.add(t); // Adiciona o novo objeto
+        }
+        return resposta; // Retorna true se a atualização foi bem-sucedida
+    };
 
     public List<T> getCadastros() {
         return cadastros;
