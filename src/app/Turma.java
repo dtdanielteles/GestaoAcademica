@@ -11,11 +11,12 @@ public class Turma {
     public Professor professor;
     private List<Aluno> alunosMatriculados = new LinkedList<>();
 
-    public Turma(String codigo, Disciplina disciplina, Professor professor) {
+    public Turma(String codigo, Disciplina disciplina, Professor professor, List<Aluno> alunos) {
         // this.numero = numero;
         this.codigo = codigo;
         this.disciplina = disciplina;
         this.professor = professor;
+        this.alunosMatriculados = alunos;
     }
 
     // public final int getNumero() {
@@ -36,6 +37,22 @@ public class Turma {
 
     public final List<Aluno> getAlunosMatriculados() {
         return this.alunosMatriculados;
+    }
+
+    public final void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public final void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public final void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    public final void setAlunos(List<Aluno> alunos) {
+        this.alunosMatriculados = alunos;
     }
 
     public String toString() {
