@@ -9,7 +9,7 @@ public class CadastroTurma extends Cadastro<Turma> {
     // Método para pesquisar uma turma pelo número
     public Turma pesquisar(String codigoTurma) {
         for (Turma a : this.getCadastros()) { // Itera sobre a lista de turmas
-            if (a.getCodigo() == codigoTurma) { // Verifica se o número da turma corresponde ao procurado
+            if (a.getCodigo().equalsIgnoreCase(codigoTurma)) { // Verifica se o número da turma corresponde ao procurado
                 return a; // Retorna a turma encontrada
             }
         }
