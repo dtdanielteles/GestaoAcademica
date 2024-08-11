@@ -37,7 +37,7 @@ public class MenuDisciplina {
             switch (opcao) {
             case 1:
                 Disciplina novaDisciplina = dadosNovaDisciplina();
-                cadDisciplina.cadastrarDisciplina(novaDisciplina);
+                cadDisciplina.cadastrar(novaDisciplina);
                 break;
 
             case 2:
@@ -63,7 +63,7 @@ public class MenuDisciplina {
                 String codigoRemover = lerCodigo();
                 Disciplina disciplinaRemover = cadDisciplina.pesquisar(codigoRemover);
                 if (disciplinaRemover != null) {
-                    boolean removeu = cadDisciplina.removerDisciplina(disciplinaRemover);
+                    boolean removeu = cadDisciplina.remover(disciplinaRemover);
                     if (removeu)
                         JOptionPane.showMessageDialog(null, "Disciplina removida com sucesso");
                     else

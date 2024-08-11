@@ -52,7 +52,7 @@ public class MenuAluno {
 			switch (opcao) {
 			case 1:
 				Aluno novoAluno = dadosNovoAluno();
-				cadAluno.cadastrarAluno(novoAluno);
+				cadAluno.cadastrar(novoAluno);
 				break;
 				
 			case 2: 
@@ -74,7 +74,7 @@ public class MenuAluno {
 			case 4: 
 				matricula = lerMatricula();
 				Aluno remover = cadAluno.pesquisar(matricula);
-				boolean removido = cadAluno.removerAluno(remover);
+				boolean removido = cadAluno.remover(remover);
 				if (removido) {
 					JOptionPane.showMessageDialog(null, "Aluno removido do cadastro");
 					System.gc();

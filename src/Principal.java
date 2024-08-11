@@ -1,7 +1,11 @@
+import java.util.Iterator;
+
 import javax.swing.JOptionPane;
 
+import app.Turma;
 import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
+import cadastros.CadastroProfessor;
 import cadastros.CadastroTurma;
 import view.MenuAluno;
 import view.MenuDisciplina;
@@ -10,14 +14,16 @@ import view.MenuTurma;
 
 public class Principal {
 
-	static CadastroAluno cadAluno;
-	static CadastroTurma cadTurma;
-	static CadastroDisciplina cadDisciplina;
+	public static CadastroAluno cadAluno;
+	public static CadastroTurma cadTurma;
+	public static CadastroDisciplina cadDisciplina;
+	public static CadastroProfessor cadProfessor;
 
 	public static void main(String[] args) {
 		cadAluno = new CadastroAluno();
 		cadTurma = new CadastroTurma();
 		cadDisciplina = new CadastroDisciplina();
+		cadProfessor = new CadastroProfessor();
 
 		int opcao = 0;
 
@@ -34,7 +40,7 @@ public class Principal {
 					MenuDisciplina.menuDisciplina(cadDisciplina);
 					break;
 				case 4:
-					MenuTurma.menuTurma(cadTurma, cadDisciplina);
+					MenuTurma.menuTurma(cadAluno, cadProfessor, cadTurma, cadDisciplina);
 					break;
 				case 0:
 					break;
@@ -43,7 +49,7 @@ public class Principal {
 					opcao = -1;
 					break;
 			}
-		} while (opcao != 0);
+		} while (opcao != 0); 
 		return;
 	}
 
