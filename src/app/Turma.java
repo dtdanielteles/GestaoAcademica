@@ -1,14 +1,15 @@
 package app;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Turma {
 
     // int numero;
-    public String codigo; // Substitui "horario"
-    public Disciplina disciplina;
-    public Professor professor;
+    private String codigo; // Substitui "horario"
+    private Disciplina disciplina;
+    private Professor professor;
     private List<Aluno> alunosMatriculados = new LinkedList<>();
 
     public Turma(String codigo, Disciplina disciplina, Professor professor, List<Aluno> alunos) {
@@ -35,8 +36,15 @@ public class Turma {
         return this.professor.toString();
     }
 
-    public final List<Aluno> getAlunosMatriculados() {
-        return this.alunosMatriculados;
+    public final String getAlunosMatriculados() {
+        String listaDeAlunos = "";
+        Iterator<Aluno> itAluno = alunosMatriculados.iterator();
+        while (itAluno.hasNext()) {
+            Aluno a = itAluno.next();
+            listaDeAlunos += "Nome: "+a.getNome()+"\n"
+                        +"Matricula: "+a.getMatricula()+"\n\n";
+        }
+        return listaDeAlunos;
     }
 
     public final void setCodigo(String codigo) {

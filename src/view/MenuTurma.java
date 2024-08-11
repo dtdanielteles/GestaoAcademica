@@ -1,6 +1,5 @@
 package view;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -103,6 +102,17 @@ public class MenuTurma {
         return p;
     }
 
+    private static String listarTurma(CadastroTurma cadTurma) {
+        String codigo = JOptionPane.showInputDialog("Digite o código da turma a ser listada:");
+        Turma t = cadTurma.pesquisar(codigo);
+
+        String listar = "Código da turma: "+t.getCodigo()+"\n"
+                    +"Disciplina: "+t.getDisciplina()+"\n"
+                    +"Professor: "+t.getProfessor()+"\n"
+                    +"Alunos: \n"+t.getAlunosMatriculados();
+        return listar;
+    }
+
     public static void menuTurma(CadastroAluno cadAluno, CadastroProfessor cadProfessor, CadastroTurma cadTurma, CadastroDisciplina cadDisciplina) {
         String txt = "Informe a opção desejada \n"
                 + "1 - Cadastrar turma\n"
@@ -148,7 +158,10 @@ public class MenuTurma {
                         JOptionPane.showMessageDialog(null, "Turma removida do cadastro");
                         System.gc();
                     }
+
                 case 5:
+                    listarTurma(cadTurma);
+                    break;
 
                 default:
                     break;
