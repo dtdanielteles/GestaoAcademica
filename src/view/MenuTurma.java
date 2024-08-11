@@ -1,6 +1,8 @@
 package view;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -15,10 +17,43 @@ import cadastros.CadastroProfessor;
 
 public class MenuTurma {
 
-    public static Turma dadosNovaTurma(CadastroDisciplina cadDisciplina) {
+    public static Turma dadosNovaTurma(CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) {
         String codigo = lerCodigo();
         Disciplina disciplina = lerDisciplina(cadDisciplina);
-        return new Turma(codigo, disciplina);
+        Professor professor = matricularProfessor(cadProfessor, cadTurma);
+        List<Aluno> alunos = matricularAluno(codigo, cadAluno, cadTurma);
+        return new Turma(codigo, disciplina, professor, alunos);
+    }
+
+    public static void atualizarTurma(String codigo, CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) {
+        Turma turma = cadTurma.pesquisar(codigo);
+
+        int opcao = -1;
+        do {
+        String txt = "Informe o dado a ser atualizado: \n"
+                    + "1 - codigo\n"
+                    + "2 - disciplina\n"
+                    + "3 - professor\n"
+                    + "4 - alunos matriculados\n"
+                    + "0 -Voltar para o menu anterior";
+        opcao = Integer.parseInt(JOptionPane.showInputDialog(txt));
+        switch (opcao) {
+            case 1:
+                turma.setCodigo(lerCodigo());
+                break;
+            case 2:
+                turma.setDisciplina(lerDisciplina(cadDisciplina));
+                break;
+            case 3:
+                turma.setProfessor(matricularProfessor(cadProfessor, cadTurma));
+                break;
+            case 4:
+                turma.setAlunos(matricularAluno(codigo, cadAluno, cadTurma));
+                break;
+            default:
+                break;
+        }
+        } while (opcao != 0);
     }
 
     private static String lerCodigo() {
@@ -39,132 +74,33 @@ public class MenuTurma {
         return disciplina;
     }
 
-    private static boolean definirDisciplina(CadastroDisciplina cadDisciplina, CadastroTurma cadTurma) {
-        String codigo = JOptionPane.showInputDialog("Digite o codigo da turma em que a disciplina será definida:");
+    private static List<Aluno> matricularAluno(String codigoTurma, CadastroAluno cadAluno, CadastroTurma cadTurma) {
+        List<Aluno> alunos = new LinkedList<>();
+		
+        do {
+            String mat = JOptionPane.showInputDialog("Digite a matricula do aluno:");
+            Aluno a = cadAluno.pesquisar(mat);
 
-        Iterator<Turma> itTurma = cadTurma.getCadastros().iterator();
-        Iterator<Disciplina> itDisciplina = cadDisciplina.getCadastros().iterator();
-
-        while (itTurma.hasNext()) {
-            Turma t = itTurma.next();
-            if (t.getCodigo().equalsIgnoreCase(codigo)) {
-                String codigoDisciplina = JOptionPane.showInputDialog("Digite o codigo da disciplina será definida para a turma "+t.getCodigo()+":");
-
-                while (itDisciplina.hasNext()) {
-                    Disciplina disciplina = itDisciplina.next();
-                    if (disciplina.getCodigo().equalsIgnoreCase(codigoDisciplina)) {
-                        t.disciplina = disciplina;
-                        JOptionPane.showMessageDialog(null, "Disciplina definida com sucesso!");
-                        return true;
-                    }
-                }
+            if (a == null) {
+                JOptionPane.showMessageDialog(null, "Matricula não encontrada.");
+                return null;
+            } else {
+                alunos.add(a);
+                JOptionPane.showMessageDialog(null, "Aluno matriculado com sucesso!");
             }
-        }
-        return false;
-    }
-
-    private static int matricularAluno(CadastroAluno cadAluno, CadastroTurma cadTurma) {
-		String codigo = JOptionPane.showInputDialog("Digite o codigo da turma em que o aluno será matriculado:");
-
-		Iterator<Turma> itTurma = cadTurma.getCadastros().iterator();
-        Iterator<Aluno> itAluno = cadAluno.getCadastros().iterator();
-
-        while (itTurma.hasNext()) {
-            Turma t = itTurma.next();
-            if (t.getCodigo().equalsIgnoreCase(codigo)) {
-                do {
-                    String mat = JOptionPane.showInputDialog("Digite a matricula do aluno:");
-
-                    while (itAluno.hasNext()) {
-                        Aluno a = itAluno.next();
-                        if (a.getMatricula().equalsIgnoreCase(mat)) {
-                            t.getAlunosMatriculados().add(a);
-                        JOptionPane.showMessageDialog(null, "Aluno matriculado com sucesso!");
-                        }
-                    }
-                } while (JOptionPane.showConfirmDialog(null, "Você deseja matricular mais alunos em"+t.getCodigo()+"?") == JOptionPane.YES_OPTION);
-            }
-            return t.getAlunosMatriculados().size();
-        }
-        return 0;
+            
+        } while (JOptionPane.showConfirmDialog(null, "Você deseja matricular mais alunos em"+codigoTurma+"?") == JOptionPane.YES_OPTION);
+        
+        return alunos;
 	}
 
-    private static int removerAluno(CadastroAluno cadAluno, CadastroTurma cadTurma) {
-        String codigo = JOptionPane.showInputDialog("Digite o codigo da turma da qual o aluno será removido:");
-
-		Iterator<Turma> itTurma = cadTurma.getCadastros().iterator();
-        Iterator<Aluno> itAluno = cadAluno.getCadastros().iterator();
-
-        while (itTurma.hasNext()) {
-            Turma t = itTurma.next();
-            if (t.getCodigo().equalsIgnoreCase(codigo)) {
-                do {
-                    String mat = JOptionPane.showInputDialog("Digite a matricula do aluno:");
-
-                    while (itAluno.hasNext()) {
-                        Aluno a = itAluno.next();
-                        if (a.getMatricula().equalsIgnoreCase(mat)) {
-                            t.getAlunosMatriculados().remove(a);
-                        JOptionPane.showMessageDialog(null, "Aluno removido com sucesso!");
-                        }
-                    }
-                } while (JOptionPane.showConfirmDialog(null, "Você deseja remover mais alunos de"+t.getCodigo()+"?") == JOptionPane.YES_OPTION);
-            }
-            return t.getAlunosMatriculados().size();
+    private static Professor matricularProfessor(CadastroProfessor cadProfessor, CadastroTurma cadTurma) {
+        String matFUB = JOptionPane.showInputDialog("Digite a matricula FUB do professor:");
+        Professor p = cadProfessor.pesquisar(matFUB);
+        if (p == null) {
+            JOptionPane.showMessageDialog(null, "Matricula FUB não encontrada");
         }
-        return 0;
-    }
-
-    private static boolean matricularProfessor(CadastroProfessor cadProfessor, CadastroTurma cadTurma) {
-        String codigo = JOptionPane.showInputDialog("Digite o codigo da turma em que o professor será matriculado:");
-
-        Iterator<Turma> itTurma = cadTurma.getCadastros().iterator();
-        Iterator<Professor> itProfessor = cadProfessor.getCadastros().iterator();
-
-        while (itTurma.hasNext()) {
-            Turma t = itTurma.next();
-            if (t.getCodigo().equalsIgnoreCase(codigo)) {
-
-                String matFUB = JOptionPane.showInputDialog(null, "Digite a matricula FUB do professor:");
-
-                while (itProfessor.hasNext()) {
-                    Professor p = itProfessor.next();
-                    if(p.getMatriculaFUB().equalsIgnoreCase(matFUB)) {
-                        t.professor = p;
-                        JOptionPane.showMessageDialog(null, "Professor matriculado com sucesso!");
-
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    private static boolean removerProfessor(CadastroProfessor cadProfessor, CadastroTurma cadTurma) {
-        String codigo = JOptionPane.showInputDialog("Digite o codigo da turma da qual o professor será removido:");
-
-        Iterator<Turma> itTurma = cadTurma.getCadastros().iterator();
-        Iterator<Professor> itProfessor = cadProfessor.getCadastros().iterator();
-
-        while (itTurma.hasNext()) {
-            Turma t = itTurma.next();
-            if (t.getCodigo().equalsIgnoreCase(codigo)) {
-
-                String matFUB = JOptionPane.showInputDialog(null, "Digite a matricula FUB do professor:");
-
-                while (itProfessor.hasNext()) {
-                    Professor p = itProfessor.next();
-                    if(p.getMatriculaFUB().equalsIgnoreCase(matFUB)) {
-                        t.professor = null;
-                        JOptionPane.showMessageDialog(null, "Professor removido com sucesso!");
-
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        return p;
     }
 
     public static void menuTurma(CadastroAluno cadAluno, CadastroProfessor cadProfessor, CadastroTurma cadTurma, CadastroDisciplina cadDisciplina) {
@@ -173,12 +109,7 @@ public class MenuTurma {
                 + "2 - Pesquisar turma\n"
                 + "3 - Atualizar turma\n"
                 + "4 - Remover turma\n"
-                + "5 - Definir disciplina para uma turma\n"
-                + "6 - Matricular aluno em turma\n"
-                + "7 - Remover aluno de turma\n"
-                + "8 - Matricular professor em turma\n"
-                + "9 - Remover professor de turma\n"
-                + "10 - Listar turma"
+                + "5 - Listar turma\n"
                 + "0 - Voltar para menu anterior";
 
         int opcao = -1;
@@ -188,7 +119,7 @@ public class MenuTurma {
 
             switch (opcao) {
                 case 1:
-                    Turma novaTurma = dadosNovaTurma(cadDisciplina);
+                    Turma novaTurma = dadosNovaTurma(cadDisciplina, cadProfessor, cadAluno, cadTurma);
                     cadTurma.cadastrar(novaTurma);
                     break;
 
@@ -201,7 +132,8 @@ public class MenuTurma {
 
                 case 3:
                     codigo = lerCodigo();
-                    Turma novoCadastro = dadosNovaTurma(cadDisciplina);
+                    atualizarTurma(codigo, cadDisciplina, cadProfessor, cadAluno, cadTurma);
+                    Turma novoCadastro = dadosNovaTurma(cadDisciplina, cadProfessor, cadAluno, cadTurma);
                     boolean atualizado = cadTurma.atualizar(codigo, novoCadastro);
                     if (atualizado) {
                         JOptionPane.showMessageDialog(null, "Cadastro atualizado.");
@@ -217,20 +149,6 @@ public class MenuTurma {
                         System.gc();
                     }
                 case 5:
-                    definirDisciplina(cadDisciplina, cadTurma);
-                    break;
-                case 6:
-                    matricularAluno(cadAluno, cadTurma);
-                    break;
-                case 7:
-                    removerAluno(cadAluno, cadTurma);
-                    break;
-                case 8:
-                    matricularProfessor(cadProfessor, cadTurma);
-                    break;
-                case 9:
-                    removerProfessor(cadProfessor, cadTurma);
-                    break;
 
                 default:
                     break;
