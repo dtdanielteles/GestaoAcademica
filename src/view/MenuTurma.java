@@ -27,6 +27,8 @@ public class MenuTurma {
     public static Turma atualizarTurma(String codigo, CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) {
         Turma turma = cadTurma.pesquisar(codigo);
 
+        JOptionPane.showMessageDialog(null, "O cadastro a ser atualizado é:\n"+turma.toString());
+
         int opcao = -1;
         do {
         String txt = "Informe o dado a ser atualizado: \n"
@@ -104,7 +106,7 @@ public class MenuTurma {
         return p;
     }
 
-    private static String listarTurma(CadastroTurma cadTurma) {
+    private static void listarTurma(CadastroTurma cadTurma) {
         String codigo = JOptionPane.showInputDialog("Digite o código da turma a ser listada:");
         Turma t = cadTurma.pesquisar(codigo);
 
@@ -112,7 +114,7 @@ public class MenuTurma {
                     +"Disciplina: "+t.getDisciplina()+"\n"
                     +"Professor: "+t.getProfessor()+"\n"
                     +"Alunos: \n"+t.getAlunosMatriculados();
-        return listar;
+        JOptionPane.showMessageDialog(null, listar);
     }
 
     public static void menuTurma(CadastroAluno cadAluno, CadastroProfessor cadProfessor, CadastroTurma cadTurma, CadastroDisciplina cadDisciplina) {

@@ -1,13 +1,10 @@
 package cadastros;
 
+import javax.swing.JOptionPane;
+
 import app.Aluno;
 
 public class CadastroAluno extends Cadastro<Aluno> {
-	
-	// public int cadastrarAluno(Aluno a) {
-	// 	boolean cadastrou = this.cadastrar(a);
-	// 	return cadastrou ? cadastros.size() : 0;
-	// }
 	
 	public Aluno pesquisar(String matriculaAluno) {
 		for (Aluno aluno : getCadastros()) {
@@ -15,22 +12,9 @@ public class CadastroAluno extends Cadastro<Aluno> {
 				return aluno;
 			}
 		}
+		JOptionPane.showMessageDialog(null, "Cadastro não encontrado");
 		return null;
 	}
-	
-	// public boolean removerAluno(Aluno a) {
-	// 	return remover(a);
-	// }
-	
-	// public boolean atualizar(String matricula, Aluno a) {
-	// 	for (int i = 0; i < getCadastros().size(); i++) {
-	// 		if (getCadastros().get(i).getMatricula().equalsIgnoreCase(matricula)) {
-	// 			getCadastros().set(i, a);
-	// 			return true;
-	// 		}
-	// 	}
-	// 	return false;
-	// }
 }
 
 

@@ -2,20 +2,27 @@ package app;
 
 public class Disciplina {
 
-    String codigo;
-    String nome;
+    private String codigo, nome;
 
     public Disciplina(String codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
     }
 
-    public String getNome() {
+    public final String getNome() {
         return nome;
     }
 
-    public String getCodigo() {
+    public final String getCodigo() {
         return codigo;
+    }
+
+    public final void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public final void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String toString() {

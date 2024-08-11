@@ -16,6 +16,45 @@ public class MenuAluno {
 		return new Aluno(nome, cpf, email, matricula, curso);
 	}
 
+	public static Aluno atualizarAluno(String matricula, CadastroAluno cadAluno) {
+        Aluno aluno = cadAluno.pesquisar(matricula);
+
+		JOptionPane.showMessageDialog(null, "O cadastro a ser atualizado é:\n"+aluno.toString());
+
+        int opcao = -1;
+        do {
+        String txt = "Informe o dado a ser atualizado: \n"
+                    + "1 - nome\n"
+                    + "2 - CPF\n"
+                    + "3 - e-mail\n"
+                    + "4 - matrícula\n"
+                    + "5 - curso\n"
+                    + "0 -Voltar para o menu anterior";
+        opcao = Integer.parseInt(JOptionPane.showInputDialog(txt));
+        switch (opcao) {
+            case 1:
+                aluno.setNome(lerNome());
+                break;
+            case 2:
+                aluno.setCpf(lerCPF());
+                break;
+            case 3:
+                aluno.setEmail(lerEmail());
+                break;
+            case 4:
+                aluno.setMatricula(lerMatricula());
+                break;
+            case 5:
+                aluno.setCurso(lerCurso());
+                break;
+            default:
+                break;
+        }
+        } while (opcao != 0);
+
+        return aluno;
+    }
+
 	private static String lerCurso() {
 		return JOptionPane.showInputDialog("Informe o curso do aluno: ");
 	}
@@ -64,7 +103,7 @@ public class MenuAluno {
 				
 			case 3: 
 				matricula = lerMatricula(); 
-				Aluno novoCadastro = dadosNovoAluno();
+				Aluno novoCadastro = atualizarAluno(matricula, cadAluno);
 				boolean atualizado = cadAluno.atualizar(matricula, novoCadastro);
 				if (atualizado) {
 					JOptionPane.showMessageDialog(null, "Cadastro atualizado.");

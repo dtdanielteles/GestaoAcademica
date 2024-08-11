@@ -11,13 +11,15 @@ public class MenuProfessor {
 		String nome = lerNome();
 		String cpf = lerCPF();
 		String email = lerEmail();
-		String matriculaFUB = lerMatriculaFUB(); 
 		String areaFormacao = lerAreaFormacao();
-		return new Professor(nome, cpf, email, matriculaFUB, areaFormacao);
+		String matriculaFUB = lerMatriculaFUB(); 
+		return new Professor(nome, cpf, email, areaFormacao, matriculaFUB);
 	}
 
     public static Professor atualizarProfessor(String matriculaFUB, CadastroProfessor cadProfessor) {
         Professor professor = cadProfessor.pesquisar(matriculaFUB);
+
+		JOptionPane.showMessageDialog(null, "O cadastro a ser atualizado é:\n"+professor.toString());
 
         int opcao = -1;
         do {

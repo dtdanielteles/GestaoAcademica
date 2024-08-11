@@ -13,6 +13,33 @@ public class MenuDisciplina {
         return new Disciplina(codigo, nome);
     }
 
+    public static Disciplina atualizarDisciplina(String codigo, CadastroDisciplina cadDisciplina) {
+        Disciplina disciplina = cadDisciplina.pesquisar(codigo);
+
+		JOptionPane.showMessageDialog(null, "O cadastro a ser atualizado é:\n"+disciplina.toString());
+
+        int opcao = -1;
+        do {
+        String txt = "Informe o dado a ser atualizado: \n"
+                    + "1 - código\n"
+                    + "2 - nome\n"
+                    + "0 -Voltar para o menu anterior";
+        opcao = Integer.parseInt(JOptionPane.showInputDialog(txt));
+        switch (opcao) {
+            case 1:
+                disciplina.setCodigo(lerCodigo());
+                break;
+            case 2:
+                disciplina.setNome(lerNome());
+                break;
+            default:
+                break;
+        }
+        } while (opcao != 0);
+
+        return disciplina;
+    }
+
     private static String lerCodigo() {
         return JOptionPane.showInputDialog("Informe o codigo da disciplina: ");
     }
@@ -51,7 +78,7 @@ public class MenuDisciplina {
 
             case 3:
                 String codigoAtualizar = lerCodigo();
-                Disciplina disciplinaAtualizada = dadosNovaDisciplina();
+                Disciplina disciplinaAtualizada = atualizarDisciplina(codigoAtualizar, cadDisciplina);
                 boolean atualizou = cadDisciplina.atualizar(codigoAtualizar, disciplinaAtualizada);
                 if (atualizou)
                     JOptionPane.showMessageDialog(null, "Disciplina atualizada com sucesso");

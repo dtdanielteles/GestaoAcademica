@@ -1,13 +1,11 @@
-import java.util.Iterator;
-
 import javax.swing.JOptionPane;
 
-import app.Turma;
 import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
 import cadastros.CadastroTurma;
 import view.MenuAluno;
+import view.MenuProfessor;
 import view.MenuDisciplina;
 import view.MenuPrincipal;
 import view.MenuTurma;
@@ -34,7 +32,7 @@ public class Principal {
 					MenuAluno.menuAluno(cadAluno);
 					break;
 				case 2:
-					JOptionPane.showMessageDialog(null, "Cadastro de professores a ser implementado");
+					MenuProfessor.menuProfessor(cadProfessor);
 					break;
 				case 3:
 					MenuDisciplina.menuDisciplina(cadDisciplina);
