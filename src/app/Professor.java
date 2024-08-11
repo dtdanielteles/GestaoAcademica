@@ -19,6 +19,14 @@ public class Professor extends PessoaFisica{
 		return matriculaFUB;
 	}
 
+	public final void setAreaFormacao(String areaFormacao) {
+		this.areaFormacao = areaFormacao;
+	}
+
+	public final void setMatriculaFUB(String matriculaFUB) {
+		this.matriculaFUB = matriculaFUB;
+	}
+
 	public String toString() {
 		String resposta = super.toString();
 		resposta += "MATRICULA FUB: " + this.matriculaFUB + '\n';

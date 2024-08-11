@@ -19,6 +19,14 @@ public class Aluno extends PessoaFisica {
 		return curso;
 	}
 
+	public final void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public final void setCurso(String curso) {
+		this.curso = curso;
+	}
+
 	protected void finalize() throws Throwable {
 		System.out.println("Destruindo objeto: " + this);
 	}

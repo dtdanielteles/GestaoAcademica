@@ -24,7 +24,7 @@ public class MenuTurma {
         return new Turma(codigo, disciplina, professor, alunos);
     }
 
-    public static void atualizarTurma(String codigo, CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) {
+    public static Turma atualizarTurma(String codigo, CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) {
         Turma turma = cadTurma.pesquisar(codigo);
 
         int opcao = -1;
@@ -53,6 +53,8 @@ public class MenuTurma {
                 break;
         }
         } while (opcao != 0);
+
+        return turma;
     }
 
     private static String lerCodigo() {
@@ -142,8 +144,7 @@ public class MenuTurma {
 
                 case 3:
                     codigo = lerCodigo();
-                    atualizarTurma(codigo, cadDisciplina, cadProfessor, cadAluno, cadTurma);
-                    Turma novoCadastro = dadosNovaTurma(cadDisciplina, cadProfessor, cadAluno, cadTurma);
+                    Turma novoCadastro = atualizarTurma(codigo, cadDisciplina, cadProfessor, cadAluno, cadTurma);
                     boolean atualizado = cadTurma.atualizar(codigo, novoCadastro);
                     if (atualizado) {
                         JOptionPane.showMessageDialog(null, "Cadastro atualizado.");
