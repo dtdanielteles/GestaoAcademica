@@ -4,16 +4,35 @@ import javax.swing.JOptionPane;
 
 import app.Professor;
 import cadastros.CadastroProfessor;
+import exceptions.CampoEmBrancoException;
 
 public class MenuProfessor {
 
-	public static Professor dadosNovoProfessor() {
+	public static Professor dadosNovoProfessor() throws CampoEmBrancoException{
 		String nome = lerNome();
 		String cpf = lerCPF();
 		String email = lerEmail();
 		String areaFormacao = lerAreaFormacao();
 		String matriculaFUB = lerMatriculaFUB(); 
-		return new Professor(nome, cpf, email, areaFormacao, matriculaFUB);
+
+		Professor p = new Professor(nome, cpf, email, areaFormacao, matriculaFUB);
+
+		if (p.getNome() == null || p.getNome().isBlank() || p.getNome().isEmpty()) {
+			throw new CampoEmBrancoException("Nome não informado.");
+		}
+		if (p.getCpf() == null || p.getCpf().isBlank() || p.getCpf().isEmpty()) {
+			throw new CampoEmBrancoException("CPF não informado.");
+		}
+		if (p.getEmail() == null || p.getEmail().isBlank() || p.getEmail().isEmpty()) {
+			throw new CampoEmBrancoException("E-mail não informado.");
+		}
+		if (p.getMatriculaFUB() == null || p.getMatriculaFUB().isBlank() || p.getMatriculaFUB().isEmpty()) {
+			throw new CampoEmBrancoException("Matrícula FUB não informada.");
+		}
+		if (p.getAreaFormacao() == null || p.getAreaFormacao().isBlank() || p.getAreaFormacao().isEmpty()) {
+			throw new CampoEmBrancoException("Área de formação não informada.");
+		}
+ 		return p;
 	}
 
     public static Professor atualizarProfessor(String matriculaFUB, CadastroProfessor cadProfessor) {
@@ -75,7 +94,7 @@ public class MenuProfessor {
 		return JOptionPane.showInputDialog("Informe a matricula FUB do(a) professor(a): ");
 	}
 
-	public static void menuProfessor(CadastroProfessor cadProfessor) {
+	public static void menuProfessor(CadastroProfessor cadProfessor) throws CampoEmBrancoException {
 		String txt = "Informe a opção desejada \n"
 				+ "1 - Cadastrar professor(a)\n"
 				+ "2 - Pesquisar professor(a)\n"

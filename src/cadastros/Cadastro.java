@@ -3,6 +3,8 @@ package cadastros;
 import java.util.LinkedList;
 import java.util.List;
 
+import exceptions.CampoEmBrancoException;
+
 public abstract class Cadastro <T> {
     private List<T> cadastros;
 
@@ -11,8 +13,10 @@ public abstract class Cadastro <T> {
         cadastros = new LinkedList<>();
     }
 
-    public int cadastrar (T t) {
+    public int cadastrar (T t) throws CampoEmBrancoException {
         // return cadastros.add(t);
+        
+
         boolean cadastrou = this.cadastros.add(t); // Adiciona o objeto à lista
         if (cadastrou) {
             return this.cadastros.size(); // Atualiza o número de objetos cadastrados

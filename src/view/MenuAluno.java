@@ -4,16 +4,35 @@ import javax.swing.JOptionPane;
 
 import app.Aluno;
 import cadastros.CadastroAluno;
+import exceptions.CampoEmBrancoException;
 
 public class MenuAluno {
 
-	public static Aluno dadosNovoAluno() {
+	public static Aluno dadosNovoAluno() throws CampoEmBrancoException{
 		String nome = lerNome();
 		String cpf = lerCPF();
 		String email = lerEmail();
 		String matricula = lerMatricula(); 
 		String curso = lerCurso();
-		return new Aluno(nome, cpf, email, matricula, curso);
+
+		Aluno a = new Aluno(nome, cpf, email, matricula, curso);
+
+		if (a.getNome() == null || a.getNome().isBlank() || a.getNome().isEmpty()) {
+			throw new CampoEmBrancoException("Nome não informado.");
+		}
+		if (a.getCpf() == null || a.getCpf().isBlank() || a.getCpf().isEmpty()) {
+			throw new CampoEmBrancoException("CPF não informado.");
+		}
+		if (a.getEmail() == null || a.getEmail().isBlank() || a.getEmail().isEmpty()) {
+			throw new CampoEmBrancoException("E-mail não informado.");
+		}
+		if (a.getMatricula() == null || a.getMatricula().isBlank() || a.getMatricula().isEmpty()) {
+			throw new CampoEmBrancoException("Matrícula não informada.");
+		}
+		if (a.getCurso() == null || a.getCurso().isBlank() || a.getCurso().isEmpty()) {
+			throw new CampoEmBrancoException("Curso não informado.");
+		}
+		return a;
 	}
 
 	public static Aluno atualizarAluno(String matricula, CadastroAluno cadAluno) {
@@ -75,7 +94,7 @@ public class MenuAluno {
 		return JOptionPane.showInputDialog("Informe a matricula do aluno: ");
 	}
 
-	public static void menuAluno(CadastroAluno cadAluno) {
+	public static void menuAluno(CadastroAluno cadAluno) throws CampoEmBrancoException {
 		String txt = "Informe a opção desejada \n"
 				+ "1 - Cadastrar aluno\n"
 				+ "2 - Pesquisar aluno\n"
