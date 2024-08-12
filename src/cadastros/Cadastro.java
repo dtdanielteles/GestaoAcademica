@@ -26,8 +26,6 @@ public abstract class Cadastro <T> {
      * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
      */
     public int cadastrar (T t) throws CampoEmBrancoException {
-        // return cadastros.add(t);
-
         boolean cadastrou = this.cadastros.add(t); // Adiciona o objeto à lista
         if (cadastrou) {
             return this.cadastros.size(); // Atualiza o número de objetos cadastrados
@@ -65,7 +63,7 @@ public abstract class Cadastro <T> {
             resposta = cadastros.add(t); // Adiciona o novo objeto
         }
         return resposta; // Retorna true se a atualização foi bem-sucedida
-    };
+    }
 
     /**
      * Método que retorna a lista de cadastros

@@ -74,10 +74,9 @@ public class PessoaFisica {
 	 * @return Representação em String da pessoa física
 	 */
 	public String toString() {
-		String resposta = super.toString() + '\n';
-		resposta += "NOME: " + nome + '\n';
+		String resposta = "Nome: " + nome + '\n';
 		resposta += "CPF: " + cpf + '\n'; 
-		resposta += "EMAIL: " + email + '\n';
+		resposta += "E-mail: " + email + '\n';
 		return resposta;
 	}
 

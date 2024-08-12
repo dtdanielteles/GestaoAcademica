@@ -60,8 +60,8 @@ public class Aluno extends PessoaFisica {
 	 */
 	public String toString() {
 		String resposta = super.toString();
-		resposta += "MATRICULA: " + matricula + '\n';
-		resposta += "CURSO: " + curso + '\n';
+		resposta += "Matrícula: " + matricula + '\n';
+		resposta += "Curso: " + curso + '\n';
 		return resposta;
 	}
 

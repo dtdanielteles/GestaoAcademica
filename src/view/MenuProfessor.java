@@ -131,7 +131,6 @@ public class MenuProfessor {
 	/**
 	 * Método que exibe o menu de professores
 	 * @param cadProfessor Cadastro de professores
-	 * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
 	 */
 	public static void menuProfessor(CadastroProfessor cadProfessor) {
 		String txt = "Informe a opção desejada \n"

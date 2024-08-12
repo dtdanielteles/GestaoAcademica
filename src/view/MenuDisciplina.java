@@ -84,7 +84,6 @@ public class MenuDisciplina {
     /**
      * Método que exibe o menu de disciplinas
      * @param cadDisciplina Cadastro de disciplinas
-     * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
      */
     public static void menuDisciplina(CadastroDisciplina cadDisciplina) {
         String txt = "Informe a opção desejada \n"

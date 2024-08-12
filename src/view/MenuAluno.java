@@ -18,29 +18,31 @@ public class MenuAluno {
 	 */
 	public static Aluno dadosNovoAluno() throws CampoEmBrancoException{
 		String nome = lerNome();
-		String cpf = lerCPF();
-		String email = lerEmail();
-		String matricula = lerMatricula(); 
-		String curso = lerCurso();
-
-		Aluno a = new Aluno(nome, cpf, email, matricula, curso);
-
-		if (a.getNome() == null || a.getNome().isBlank() || a.getNome().isEmpty()) {
+		if (nome == null || nome.isBlank() || nome.isEmpty()) {
 			throw new CampoEmBrancoException("Nome não informado.");
 		}
-		if (a.getCpf() == null || a.getCpf().isBlank() || a.getCpf().isEmpty()) {
+
+		String cpf = lerCPF();
+		if (cpf == null || cpf.isBlank() || cpf.isEmpty()) {
 			throw new CampoEmBrancoException("CPF não informado.");
 		}
-		if (a.getEmail() == null || a.getEmail().isBlank() || a.getEmail().isEmpty()) {
+
+		String email = lerEmail();
+		if (email == null || email.isBlank() || email.isEmpty()) {
 			throw new CampoEmBrancoException("E-mail não informado.");
 		}
-		if (a.getMatricula() == null || a.getMatricula().isBlank() || a.getMatricula().isEmpty()) {
+
+		String matricula = lerMatricula();
+		if (matricula == null || matricula.isBlank() || matricula.isEmpty()) {
 			throw new CampoEmBrancoException("Matrícula não informada.");
 		}
-		if (a.getCurso() == null || a.getCurso().isBlank() || a.getCurso().isEmpty()) {
+
+		String curso = lerCurso();
+		if (curso == null || curso.isBlank() || curso.isEmpty()) {
 			throw new CampoEmBrancoException("Curso não informado.");
 		}
-		return a;
+
+		return new Aluno(nome, cpf, email, matricula, curso);
 	}
 
 	/**

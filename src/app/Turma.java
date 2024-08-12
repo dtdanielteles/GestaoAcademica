@@ -120,9 +120,7 @@ public class Turma {
      * @return Representação em String da turma
      */
     public String toString() {
-        String resposta = super.toString() + "\n";
-        // resposta += "Numero: " + numero + "\n";
-        resposta += "Código (horário): " + this.codigo + "\n";
+        String resposta = "Código (horário): " + this.codigo + "\n";
         resposta += "Disciplina: " + this.getDisciplina() + "\n";
         return resposta;
     }

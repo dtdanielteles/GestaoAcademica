@@ -54,8 +54,7 @@ public class Disciplina {
      * @return Representação em String da disciplina
      */
     public String toString() {
-        String resposta = super.toString() + "\n";
-        resposta += "Codigo: " + codigo + "\n";
+        String resposta = "Código: " + codigo + "\n";
         resposta += "Nome: " + nome + "\n";
         return resposta;
     }

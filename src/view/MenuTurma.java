@@ -118,8 +118,7 @@ public class MenuTurma {
      * @return Código da turma
      */
     private static String lerCodigo() {
-        String codigo = JOptionPane.showInputDialog("Informe o código da turma: ");
-        return codigo;
+        return JOptionPane.showInputDialog("Informe o código da turma: ");
     }
 
     /**
@@ -142,7 +141,6 @@ public class MenuTurma {
      * 
      * @param codigoTurma Código da turma
      * @param cadAluno    Cadastro de alunos
-     * @param cadTurma    Cadastro de turmas
      * @return Lista de alunos matriculados
      */
     private static List<Aluno> matricularAluno(String codigoTurma, CadastroAluno cadAluno, CadastroTurma cadTurma) {
@@ -205,12 +203,6 @@ public class MenuTurma {
      * @param cadProfessor  Cadastro de professores
      * @param cadTurma      Cadastro de turmas
      * @param cadDisciplina Cadastro de disciplinas
-     * @throws CampoEmBrancoException          Exceção lançada quando um campo
-     *                                         obrigatório não é preenchido
-     * @throws ProfessorNaoAtribuidoException  Exceção lançada quando o professor
-     *                                         não é atribuído
-     * @throws DisciplinaNaoAtribuidaException Exceção lançada quando a disciplina
-     *                                         não é atribuída
      */
     public static void menuTurma(CadastroAluno cadAluno, CadastroProfessor cadProfessor, CadastroTurma cadTurma,
             CadastroDisciplina cadDisciplina) {
