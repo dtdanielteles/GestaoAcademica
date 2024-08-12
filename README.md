@@ -65,7 +65,7 @@ java -cp bin Principal
 3. Siga as instruções exibidas na tela para interagir com o sistema.
 
 ## Documentação do projeto
-- Este projeto foi documentado utilizando a ferramenta Javadoc. Para acessar a documentação, abra o arquivo `index.html` localizado na pasta `doc` do projeto.
+- Este projeto foi documentado utilizando a ferramenta Javadoc. Para acessar a documentação, acesse este [link](https://dtdanielteles.github.io/Doc/GestaoAcademica/).
 
 ## Diagrama de classes UML
 - [Link](https://drive.google.com/file/d/1Tua-ptERElSbrWBYxkblLFWvdKvmSve6/view?usp=sharing) para o diagrama no Draw.io
