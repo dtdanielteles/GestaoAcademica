@@ -133,7 +133,7 @@ public class MenuProfessor {
 	 * @param cadProfessor Cadastro de professores
 	 * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
 	 */
-	public static void menuProfessor(CadastroProfessor cadProfessor) throws CampoEmBrancoException {
+	public static void menuProfessor(CadastroProfessor cadProfessor) {
 		String txt = "Informe a opção desejada \n"
 				+ "1 - Cadastrar professor(a)\n"
 				+ "2 - Pesquisar professor(a)\n"
@@ -141,47 +141,69 @@ public class MenuProfessor {
 				+ "4 - Remover professor(a)\n"
 				+ "0 - Voltar para menu anterior";
 		
-		int opcao=-1;
+		int opcao = -1;
 		do {
 			String strOpcao = JOptionPane.showInputDialog(txt);
-			opcao = Integer.parseInt(strOpcao);
-
-			switch (opcao) {
-			case 1:
-				Professor novoProfessor = dadosNovoProfessor();
-				cadProfessor.cadastrar(novoProfessor);
-				break;
-				
-			case 2: 
-				String matriculaFUB = lerMatriculaFUB();
-				Professor p = cadProfessor.pesquisar(matriculaFUB);
-				if (p != null)
-					JOptionPane.showMessageDialog(null, p.toString());
-				break;
-				
-			case 3: 
-				matriculaFUB = lerMatriculaFUB(); 
-				Professor novoCadastro = atualizarProfessor(matriculaFUB, cadProfessor);
-				boolean atualizado = cadProfessor.atualizar(matriculaFUB, novoCadastro);
-				if (atualizado) {
-					JOptionPane.showMessageDialog(null, "Cadastro atualizado.");
+			try {
+				opcao = Integer.parseInt(strOpcao);
+	
+				switch (opcao) {
+				case 1:
+					try {
+						Professor novoProfessor = dadosNovoProfessor();
+						cadProfessor.cadastrar(novoProfessor);
+						JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso.");
+					} catch (CampoEmBrancoException e) {
+						JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+					}
+					break;
+					
+				case 2:
+					String matriculaFUB = lerMatriculaFUB();
+					Professor p = cadProfessor.pesquisar(matriculaFUB);
+					if (p != null)
+						JOptionPane.showMessageDialog(null, p.toString());
+					else
+						JOptionPane.showMessageDialog(null, "Professor não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+					break;
+					
+				case 3:
+					matriculaFUB = lerMatriculaFUB();
+					Professor novoCadastro = atualizarProfessor(matriculaFUB, cadProfessor);
+					boolean atualizado = cadProfessor.atualizar(matriculaFUB, novoCadastro);
+					if (atualizado) {
+						JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso.");
+					} else {
+						JOptionPane.showMessageDialog(null, "Professor não encontrado para atualização.", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
+					break;
+					
+				case 4:
+					matriculaFUB = lerMatriculaFUB();
+					Professor remover = cadProfessor.pesquisar(matriculaFUB);
+					if (remover != null) {
+						boolean removido = cadProfessor.remover(remover);
+						if (removido) {
+							JOptionPane.showMessageDialog(null, "Professor removido com sucesso.");
+						} else {
+							JOptionPane.showMessageDialog(null, "Erro ao remover professor.", "Erro", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Professor não encontrado para remoção.", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
+					break;
+	
+				case 0:
+					// Voltar para o menu anterior
+					break;
+	
+				default:
+					JOptionPane.showMessageDialog(null, "Opção inválida. Por favor, selecione uma opção válida.", "Erro", JOptionPane.ERROR_MESSAGE);
+					break;
 				}
-				break;
-				
-			case 4: 
-				matriculaFUB = lerMatriculaFUB();
-				Professor remover = cadProfessor.pesquisar(matriculaFUB);
-				boolean removido = cadProfessor.remover(remover);
-				if (removido) {
-					JOptionPane.showMessageDialog(null, "Professor removido do cadastro");
-					System.gc();
-				}
-
-			default:
-				break;
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		} while (opcao != 0);
 	}
-
-
 }

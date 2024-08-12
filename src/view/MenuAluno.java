@@ -148,8 +148,12 @@ public class MenuAluno {
 
 			switch (opcao) {
 			case 1:
+				try{
 				Aluno novoAluno = dadosNovoAluno();
 				cadAluno.cadastrar(novoAluno);
+				}catch(CampoEmBrancoException e){
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+				}
 				break;
 				
 			case 2: 
