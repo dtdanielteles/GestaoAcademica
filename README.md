@@ -31,5 +31,5 @@ O sistema possibilita, após a instânciação dos objetos e a atribuição de v
 
 Este sistema é uma solução prática para automatizar o processo de gestão acadêmica.
 
-## Diagrama UML
+## Diagrama de classes UML
 ![GestaoAcademica](https://github.com/user-attachments/assets/dfc981fa-7c29-4c21-baac-4da7387f9c8a)
