@@ -28,11 +28,19 @@ public class Turma {
         return this.codigo;
     }
 
-    public final String getDisciplina() {
+    public final Disciplina getDisciplina() {
+        return this.disciplina;
+    }
+
+    public final String getDisciplinaStr() {
         return this.disciplina.toString();
     }
 
-    public final String getProfessor() {
+    public final Professor getProfessor() {
+        return this.professor;
+    }
+
+    public final String getProfessorStr() {
         return this.professor.toString();
     }
 

@@ -14,14 +14,31 @@ import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
 
+import exceptions.CampoEmBrancoException;
+
 public class MenuTurma {
 
-    public static Turma dadosNovaTurma(CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) {
+    public static Turma dadosNovaTurma(CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) throws CampoEmBrancoException{
         String codigo = lerCodigo();
         Disciplina disciplina = lerDisciplina(cadDisciplina);
         Professor professor = matricularProfessor(cadProfessor, cadTurma);
         List<Aluno> alunos = matricularAluno(codigo, cadAluno, cadTurma);
-        return new Turma(codigo, disciplina, professor, alunos);
+
+        Turma turma = new Turma(codigo, disciplina, professor, alunos);
+
+		if (turma.getCodigo() == null || turma.getCodigo().isBlank() || turma.getCodigo().isEmpty()) {
+			throw new CampoEmBrancoException("Código da turma não informado.");
+		}
+		if (turma.getDisciplina() == null) {
+			throw new CampoEmBrancoException("Código da disciplina não informado.");
+		}
+		if (turma.getProfessor() == null) {
+			throw new CampoEmBrancoException("Professor(a) não informado(a).");
+		}
+		if (turma.getAlunosMatriculados() == null || turma.getAlunosMatriculados().isBlank() ||turma.getAlunosMatriculados().isEmpty()) {
+			throw new CampoEmBrancoException("Não há alunos matriculados na turma.");
+		}
+        return turma;
     }
 
     public static Turma atualizarTurma(String codigo, CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) {
@@ -63,10 +80,6 @@ public class MenuTurma {
         String codigo = JOptionPane.showInputDialog("Informe o código da turma: ");
         return codigo;
     }
-
-    // private static String lerHorario() {
-    //     return JOptionPane.showInputDialog("Informe o horario da turma: ");
-    // }
 
     private static Disciplina lerDisciplina(CadastroDisciplina cadDisciplina) {
         String codigo = JOptionPane.showInputDialog("Informe o codigo da disciplina: ");
@@ -117,7 +130,7 @@ public class MenuTurma {
         JOptionPane.showMessageDialog(null, listar);
     }
 
-    public static void menuTurma(CadastroAluno cadAluno, CadastroProfessor cadProfessor, CadastroTurma cadTurma, CadastroDisciplina cadDisciplina) {
+    public static void menuTurma(CadastroAluno cadAluno, CadastroProfessor cadProfessor, CadastroTurma cadTurma, CadastroDisciplina cadDisciplina) throws CampoEmBrancoException {
         String txt = "Informe a opção desejada \n"
                 + "1 - Cadastrar turma\n"
                 + "2 - Pesquisar turma\n"
