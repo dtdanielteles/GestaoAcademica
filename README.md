@@ -10,7 +10,8 @@
 
 - **Luiz Felipe Bessa Santos** - Matrícula: 231011687
 - **Yasmin Dayrell Albuquerque** - Matrícula: 232014226
-- **Luiz Felipe Bessa Santos** - Matrícula: 231011687
+- **Daniel Teles Brito - 231012174
+- **Pedro Henrique Freire Rodrigues - 231026545
 
 
 ## Sobre
