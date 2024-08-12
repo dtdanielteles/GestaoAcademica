@@ -4,12 +4,13 @@ import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
 import cadastros.CadastroTurma;
-import exceptions.CampoEmBrancoException;
 import view.MenuAluno;
 import view.MenuProfessor;
 import view.MenuDisciplina;
 import view.MenuPrincipal;
 import view.MenuTurma;
+
+import exceptions.CampoEmBrancoException;
 
 public class Principal {
 

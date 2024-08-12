@@ -6,23 +6,18 @@ import java.util.List;
 
 public class Turma {
 
-    // int numero;
     private String codigo; // Substitui "horario"
     private Disciplina disciplina;
     private Professor professor;
     private List<Aluno> alunosMatriculados = new LinkedList<>();
 
     public Turma(String codigo, Disciplina disciplina, Professor professor, List<Aluno> alunos) {
-        // this.numero = numero;
+        
         this.codigo = codigo;
         this.disciplina = disciplina;
         this.professor = professor;
         this.alunosMatriculados = alunos;
     }
-
-    // public final int getNumero() {
-    //     return this.numero;
-    // }
 
     public final String getCodigo() {
         return this.codigo;

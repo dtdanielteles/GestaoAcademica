@@ -15,10 +15,12 @@ import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
 
 import exceptions.CampoEmBrancoException;
+import exceptions.DisciplinaNaoAtribuidaException;
+import exceptions.ProfessorNaoAtribuidoException;
 
 public class MenuTurma {
 
-    public static Turma dadosNovaTurma(CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) throws CampoEmBrancoException{
+    public static Turma dadosNovaTurma(CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) throws CampoEmBrancoException, ProfessorNaoAtribuidoException, DisciplinaNaoAtribuidaException{
         String codigo = lerCodigo();
         Disciplina disciplina = lerDisciplina(cadDisciplina);
         Professor professor = matricularProfessor(cadProfessor, cadTurma);
@@ -30,10 +32,10 @@ public class MenuTurma {
 			throw new CampoEmBrancoException("Código da turma não informado.");
 		}
 		if (turma.getDisciplina() == null) {
-			throw new CampoEmBrancoException("Código da disciplina não informado.");
+			throw new DisciplinaNaoAtribuidaException("Código da disciplina não informado.");
 		}
 		if (turma.getProfessor() == null) {
-			throw new CampoEmBrancoException("Professor(a) não informado(a).");
+			throw new ProfessorNaoAtribuidoException("Professor(a) não informado(a).");
 		}
 		if (turma.getAlunosMatriculados() == null || turma.getAlunosMatriculados().isBlank() ||turma.getAlunosMatriculados().isEmpty()) {
 			throw new CampoEmBrancoException("Não há alunos matriculados na turma.");
