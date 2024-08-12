@@ -6,8 +6,16 @@ import app.Professor;
 import cadastros.CadastroProfessor;
 import exceptions.CampoEmBrancoException;
 
+/**
+ * Classe que define o menu de professores
+ */
 public class MenuProfessor {
 
+	/**
+	 * Método que lê os dados de um novo professor
+	 * @return Professor com os dados lidos
+	 * @throws CampoEmBrancoException Exceção lançada caso algum campo esteja em branco
+	 */
 	public static Professor dadosNovoProfessor() throws CampoEmBrancoException{
 		String nome = lerNome();
 		String cpf = lerCPF();
@@ -35,6 +43,12 @@ public class MenuProfessor {
  		return p;
 	}
 
+	/**
+	 * Método que atualiza os dados de um professor
+	 * @param matriculaFUB Matrícula do professor a ser atualizado
+	 * @param cadProfessor Cadastro de professores
+	 * @return Professor com os dados atualizados
+	 */
     public static Professor atualizarProfessor(String matriculaFUB, CadastroProfessor cadProfessor) {
         Professor professor = cadProfessor.pesquisar(matriculaFUB);
 
@@ -74,26 +88,51 @@ public class MenuProfessor {
         return professor;
     }
 
+	/**
+	 * Método que lê a área de formação do professor
+	 * @return Área de formação do professor
+	 */
 	private static String lerAreaFormacao() {
 		return JOptionPane.showInputDialog("Informe a área de formação do(a) professor(a): ");
 	}
 
+	/**
+	 * Método que lê o e-mail do professor
+	 * @return E-mail do professor
+	 */
 	private static String lerEmail() {
 		return JOptionPane.showInputDialog("Informe o email do(a) professor(a): ");
 	}
 
+	/**
+	 * Método que lê o CPF do professor
+	 * @return CPF do professor
+	 */
 	private static String lerCPF() {
 		return JOptionPane.showInputDialog("Informe o CPF do(a) professor(a): ");
 	}
 
+	/**
+	 * Método que lê o nome do professor
+	 * @return Nome do professor
+	 */
 	private static String lerNome() {
 		return JOptionPane.showInputDialog("Informe o nome do(a) professor(a): ");
 	}
 
+	/**
+	 * Método que lê a matrícula FUB do professor
+	 * @return Matrícula FUB do professor
+	 */
 	private static String lerMatriculaFUB() {
 		return JOptionPane.showInputDialog("Informe a matricula FUB do(a) professor(a): ");
 	}
 
+	/**
+	 * Método que exibe o menu de professores
+	 * @param cadProfessor Cadastro de professores
+	 * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
+	 */
 	public static void menuProfessor(CadastroProfessor cadProfessor) throws CampoEmBrancoException {
 		String txt = "Informe a opção desejada \n"
 				+ "1 - Cadastrar professor(a)\n"
@@ -142,7 +181,6 @@ public class MenuProfessor {
 				break;
 			}
 		} while (opcao != 0);
-		return;
 	}
 
 

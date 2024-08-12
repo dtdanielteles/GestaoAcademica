@@ -14,6 +14,9 @@ import exceptions.CampoEmBrancoException;
 import exceptions.DisciplinaNaoAtribuidaException;
 import exceptions.ProfessorNaoAtribuidoException;
 
+/**
+ * Classe principal do programa
+ */
 public class Principal {
 
 	public static CadastroAluno cadAluno;
@@ -21,6 +24,13 @@ public class Principal {
 	public static CadastroDisciplina cadDisciplina;
 	public static CadastroProfessor cadProfessor;
 
+	/**
+	 * Método principal do programa
+	 * @param args Argumentos passados por linha de comando
+	 * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
+	 * @throws ProfessorNaoAtribuidoException Exceção lançada quando o professor não é atribuído
+	 * @throws DisciplinaNaoAtribuidaException Exceção lançada quando a disciplina não é atribuída
+	 */
 	public static void main(String[] args) throws CampoEmBrancoException, ProfessorNaoAtribuidoException, DisciplinaNaoAtribuidaException {
 		cadAluno = new CadastroAluno();
 		cadTurma = new CadastroTurma();
@@ -51,8 +61,7 @@ public class Principal {
 					opcao = -1;
 					break;
 			}
-		} while (opcao != 0); 
-		return;
+		} while (opcao != 0);
 	}
 
 }

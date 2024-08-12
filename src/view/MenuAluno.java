@@ -6,8 +6,16 @@ import app.Aluno;
 import cadastros.CadastroAluno;
 import exceptions.CampoEmBrancoException;
 
+/**
+ * Classe que define o menu de interação com o usuário para cadastro de alunos
+ */
 public class MenuAluno {
 
+	/**
+	 * Método que lê os dados de um novo aluno
+	 * @return Aluno com os dados lidos
+	 * @throws CampoEmBrancoException Exceção lançada caso algum campo esteja em branco
+	 */
 	public static Aluno dadosNovoAluno() throws CampoEmBrancoException{
 		String nome = lerNome();
 		String cpf = lerCPF();
@@ -35,6 +43,12 @@ public class MenuAluno {
 		return a;
 	}
 
+	/**
+	 * Método que atualiza os dados de um aluno
+	 * @param matricula Matrícula do aluno a ser atualizado
+	 * @param cadAluno Cadastro de alunos
+	 * @return Aluno com os dados atualizados
+	 */
 	public static Aluno atualizarAluno(String matricula, CadastroAluno cadAluno) {
         Aluno aluno = cadAluno.pesquisar(matricula);
 
@@ -74,26 +88,51 @@ public class MenuAluno {
         return aluno;
     }
 
+	/**
+	 * Método que lê o curso do aluno
+	 * @return Curso do aluno
+	 */
 	private static String lerCurso() {
 		return JOptionPane.showInputDialog("Informe o curso do aluno: ");
 	}
 
+	/**
+	 * Método que lê o email do aluno
+	 * @return Email do aluno
+	 */
 	private static String lerEmail() {
 		return JOptionPane.showInputDialog("Informe o email do aluno: ");
 	}
 
+	/**
+	 * Método que lê o CPF do aluno
+	 * @return CPF do aluno
+	 */
 	private static String lerCPF() {
 		return JOptionPane.showInputDialog("Informe o CPF do aluno: ");
 	}
 
+	/**
+	 * Método que lê o nome do aluno
+	 * @return Nome do aluno
+	 */
 	private static String lerNome() {
 		return JOptionPane.showInputDialog("Informe o nome do aluno: ");
 	}
 
+	/**
+	 * Método que lê a matrícula do aluno
+	 * @return Matrícula do aluno
+	 */
 	private static String lerMatricula() {
 		return JOptionPane.showInputDialog("Informe a matricula do aluno: ");
 	}
 
+	/**
+	 * Método que exibe o menu de interação com o usuário para cadastro de alunos
+	 * @param cadAluno Cadastro de alunos
+	 * @throws CampoEmBrancoException Exceção lançada caso algum campo esteja em branco
+	 */
 	public static void menuAluno(CadastroAluno cadAluno) throws CampoEmBrancoException {
 		String txt = "Informe a opção desejada \n"
 				+ "1 - Cadastrar aluno\n"
@@ -142,7 +181,6 @@ public class MenuAluno {
 				break;
 			}
 		} while (opcao != 0);
-		return;
 	}
 
 

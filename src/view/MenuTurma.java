@@ -18,8 +18,22 @@ import exceptions.CampoEmBrancoException;
 import exceptions.DisciplinaNaoAtribuidaException;
 import exceptions.ProfessorNaoAtribuidoException;
 
+/**
+ * Classe que define o menu de turmas
+ */
 public class MenuTurma {
 
+    /**
+     * Método que recebe os dados de uma nova turma
+     * @param cadDisciplina Cadastro de disciplinas
+     * @param cadProfessor Cadastro de professores
+     * @param cadAluno Cadastro de alunos
+     * @param cadTurma Cadastro de turmas
+     * @return Turma com os dados lidos
+     * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
+     * @throws ProfessorNaoAtribuidoException Exceção lançada quando o professor não é atribuído
+     * @throws DisciplinaNaoAtribuidaException Exceção lançada quando a disciplina não é atribuída
+     */
     public static Turma dadosNovaTurma(CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) throws CampoEmBrancoException, ProfessorNaoAtribuidoException, DisciplinaNaoAtribuidaException{
         String codigo = lerCodigo();
         Disciplina disciplina = lerDisciplina(cadDisciplina);
@@ -43,6 +57,15 @@ public class MenuTurma {
         return turma;
     }
 
+    /**
+     * Método que atualiza os dados de uma turma
+     * @param codigo Código da turma a ser atualizada
+     * @param cadDisciplina Cadastro de disciplinas
+     * @param cadProfessor Cadastro de professores
+     * @param cadAluno Cadastro de alunos
+     * @param cadTurma Cadastro de turmas
+     * @return Turma com os dados atualizados
+     */
     public static Turma atualizarTurma(String codigo, CadastroDisciplina cadDisciplina, CadastroProfessor cadProfessor, CadastroAluno cadAluno, CadastroTurma cadTurma) {
         Turma turma = cadTurma.pesquisar(codigo);
 
@@ -78,11 +101,20 @@ public class MenuTurma {
         return turma;
     }
 
+    /**
+     * Método que lê o código da turma
+     * @return Código da turma
+     */
     private static String lerCodigo() {
         String codigo = JOptionPane.showInputDialog("Informe o código da turma: ");
         return codigo;
     }
 
+    /**
+     * Método que lê a disciplina
+     * @param cadDisciplina Cadastro de disciplinas
+     * @return Disciplina lida
+     */
     private static Disciplina lerDisciplina(CadastroDisciplina cadDisciplina) {
         String codigo = JOptionPane.showInputDialog("Informe o codigo da disciplina: ");
         Disciplina disciplina = cadDisciplina.pesquisar(codigo);
@@ -92,6 +124,13 @@ public class MenuTurma {
         return disciplina;
     }
 
+    /**
+     * Método que matricula um aluno em uma turma
+     * @param codigoTurma Código da turma
+     * @param cadAluno Cadastro de alunos
+     * @param cadTurma Cadastro de turmas
+     * @return Lista de alunos matriculados
+     */
     private static List<Aluno> matricularAluno(String codigoTurma, CadastroAluno cadAluno, CadastroTurma cadTurma) {
         List<Aluno> alunos = new LinkedList<>();
 		
@@ -112,6 +151,12 @@ public class MenuTurma {
         return alunos;
 	}
 
+    /**
+     * Método que matricula um professor em uma turma
+     * @param cadProfessor Cadastro de professores
+     * @param cadTurma Cadastro de turmas
+     * @return Professor matriculado
+     */
     private static Professor matricularProfessor(CadastroProfessor cadProfessor, CadastroTurma cadTurma) {
         String matFUB = JOptionPane.showInputDialog("Digite a matricula FUB do professor:");
         Professor p = cadProfessor.pesquisar(matFUB);
@@ -121,6 +166,10 @@ public class MenuTurma {
         return p;
     }
 
+    /**
+     * Método que lista uma turma
+     * @param cadTurma Cadastro de turmas
+     */
     private static void listarTurma(CadastroTurma cadTurma) {
         String codigo = JOptionPane.showInputDialog("Digite o código da turma a ser listada:");
         Turma t = cadTurma.pesquisar(codigo);
@@ -132,6 +181,16 @@ public class MenuTurma {
         JOptionPane.showMessageDialog(null, listar);
     }
 
+    /**
+     * Método que exibe o menu de turmas
+     * @param cadAluno Cadastro de alunos
+     * @param cadProfessor Cadastro de professores
+     * @param cadTurma Cadastro de turmas
+     * @param cadDisciplina Cadastro de disciplinas
+     * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
+     * @throws ProfessorNaoAtribuidoException Exceção lançada quando o professor não é atribuído
+     * @throws DisciplinaNaoAtribuidaException Exceção lançada quando a disciplina não é atribuída
+     */
     public static void menuTurma(CadastroAluno cadAluno, CadastroProfessor cadProfessor, CadastroTurma cadTurma, CadastroDisciplina cadDisciplina) throws CampoEmBrancoException, ProfessorNaoAtribuidoException, DisciplinaNaoAtribuidaException {
         String txt = "Informe a opção desejada \n"
                 + "1 - Cadastrar turma\n"
@@ -185,7 +244,6 @@ public class MenuTurma {
                     break;
             }
         } while (opcao != 0);
-        return;
     }
 
 }

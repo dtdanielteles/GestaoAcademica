@@ -4,9 +4,16 @@ import javax.swing.JOptionPane;
 
 import app.Turma;
 
+/**
+ * Classe que define um cadastro de turmas
+ */
 public class CadastroTurma extends Cadastro<Turma> {
-    
-    // Método para pesquisar uma turma pelo número
+
+    /**
+     * Método que pesquisa uma turma pelo código
+     * @param codigoTurma Código da turma a ser pesquisada
+     * @return Turma pesquisada
+     */
     public Turma pesquisar(String codigoTurma) {
         for (Turma a : this.getCadastros()) { // Itera sobre a lista de turmas
             if (a.getCodigo().equalsIgnoreCase(codigoTurma)) { // Verifica se o número da turma corresponde ao procurado

@@ -6,8 +6,16 @@ import app.Disciplina;
 import cadastros.CadastroDisciplina;
 import exceptions.CampoEmBrancoException;
 
+/**
+ * Classe que define o menu de disciplinas
+ */
 public class MenuDisciplina {
 
+    /**
+     * Método que lê os dados de uma nova disciplina
+     * @return Disciplina com os dados lidos
+     * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
+     */
     public static Disciplina dadosNovaDisciplina() throws CampoEmBrancoException {
         String codigo = lerCodigo();
         String nome = lerNome();
@@ -24,6 +32,12 @@ public class MenuDisciplina {
         return disciplina;
     }
 
+    /**
+     * Método que atualiza os dados de uma disciplina
+     * @param codigo Código da disciplina a ser atualizada
+     * @param cadDisciplina Cadastro de disciplinas
+     * @return Disciplina com os dados atualizados
+     */
     public static Disciplina atualizarDisciplina(String codigo, CadastroDisciplina cadDisciplina) {
         Disciplina disciplina = cadDisciplina.pesquisar(codigo);
 
@@ -51,14 +65,27 @@ public class MenuDisciplina {
         return disciplina;
     }
 
+    /**
+     * Método que lê o código da disciplina
+     * @return Código da disciplina
+     */
     private static String lerCodigo() {
         return JOptionPane.showInputDialog("Informe o codigo da disciplina: ");
     }
 
+    /**
+     * Método que lê o nome da disciplina
+     * @return Nome da disciplina
+     */
     private static String lerNome() {
         return JOptionPane.showInputDialog("Informe o nome da disciplina: ");
     }
 
+    /**
+     * Método que exibe o menu de disciplinas
+     * @param cadDisciplina Cadastro de disciplinas
+     * @throws CampoEmBrancoException Exceção lançada quando um campo obrigatório não é preenchido
+     */
     public static void menuDisciplina(CadastroDisciplina cadDisciplina) throws CampoEmBrancoException {
         String txt = "Informe a opção desejada \n"
                 + "1 - Cadastrar disciplina\n"
