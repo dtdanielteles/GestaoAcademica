@@ -107,7 +107,7 @@ public class MenuTurma {
                 JOptionPane.showMessageDialog(null, "Aluno matriculado com sucesso!");
             }
             
-        } while (JOptionPane.showConfirmDialog(null, "Você deseja matricular mais alunos em"+codigoTurma+"?") == JOptionPane.YES_OPTION);
+        } while (JOptionPane.showConfirmDialog(null, "Você deseja matricular mais alunos em "+codigoTurma+"?") == JOptionPane.YES_OPTION);
         
         return alunos;
 	}
